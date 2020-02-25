@@ -56,7 +56,6 @@ class MainActivity : BaseActivity<MainViewModel>() {
                 val entry: Map.Entry<String, Forecast> = fore.entries.iterator().next()
                 val foreArr:ArrayList<Forecast> = ArrayList()
                 foreArr.add(entry.value)
-                Log.i("foreArr",Gson().toJson(foreArr))
                 recyclerView.layoutManager =
                     LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL, false)
                 adapter!!.setItems(foreArr)
@@ -70,9 +69,11 @@ class MainActivity : BaseActivity<MainViewModel>() {
             if (isLoading) {
                 progressBar.visibility = View.VISIBLE
                 main_detail.visibility = View.GONE
+                error_screen.visibility = View.GONE
             } else {
                 progressBar.visibility = View.GONE
                 main_detail.visibility = View.VISIBLE
+                error_screen.visibility = View.GONE
 
             }
         }
@@ -82,7 +83,6 @@ class MainActivity : BaseActivity<MainViewModel>() {
         override fun onChanged(t: String?) {
             main_detail.visibility = View.GONE
             error_screen.visibility = View.VISIBLE
-//            Toast.makeText(applicationContext,t,Toast.LENGTH_LONG).show()
         }
 
     }

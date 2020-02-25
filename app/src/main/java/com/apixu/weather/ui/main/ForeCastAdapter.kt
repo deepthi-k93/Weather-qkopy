@@ -1,6 +1,6 @@
 package com.apixu.weather.ui.main
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.apixu.weather.R
 import com.apixu.weather.model.Forecast
+import java.text.SimpleDateFormat
+
 
 /**
  * Created by deepthi on 23/3/2020.
@@ -21,9 +23,13 @@ class ForeCastAdapter() :
         notifyDataSetChanged()
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        holder.itemDay?.text= forecast[position].date
+        val inFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date = inFormat.parse(forecast[position].date)
+        val outFormat = SimpleDateFormat("EEEE")
+        val goal = outFormat.format(date)
+        holder.itemDay?.text = goal
         holder.itemDeg?.text = forecast[position].avgtemp.toString()+"\u2103"
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
