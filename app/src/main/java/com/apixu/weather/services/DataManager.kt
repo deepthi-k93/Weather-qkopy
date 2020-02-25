@@ -3,8 +3,7 @@ package com.apixu.weather.services
 /**
  * Created by Deepthi on 22/02/2020.
  */
-class DataManager {
-    constructor() {}
+class DataManager() {
 
     fun getNetworkServices(): NetworkServicesImpl? {
         return NetworkServicesImpl().getInstance()

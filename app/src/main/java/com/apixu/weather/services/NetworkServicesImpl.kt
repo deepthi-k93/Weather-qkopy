@@ -7,20 +7,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkServicesImpl() {
 
     @Volatile private var sInstance: NetworkServicesImpl? = null
-
     private var mRetrofit: Retrofit? = null
-
     var mAPIServices: ApiServices? = null
 
     fun getInstance(): NetworkServicesImpl? {
-
         if (null == sInstance) {
             synchronized(NetworkServicesImpl::class.java) {
                 sInstance = NetworkServicesImpl()
-
             }
         }
-
         return sInstance
     }
 
